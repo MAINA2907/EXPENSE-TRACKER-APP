@@ -1,15 +1,25 @@
+
+import React from 'react';
+import Register from './Register';
 import Login from './components/Login'
-import './App.css';
+import Dashboard from "./components/Dashboard";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Login />
 
-      </header>
+    <div>
+        <Login />
+      </div>
+    
+    <div>      
+      <Register />
     </div>
-  );
-}
+    
+    <div>
+      <Dashboard />
+    </div>
+ 
+};
 
 export default App;
