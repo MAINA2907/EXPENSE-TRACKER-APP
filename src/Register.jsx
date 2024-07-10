@@ -4,8 +4,8 @@ import * as yup from "yup";
 import './Register.css';
 
 
-const Register = () => {
-  const [user, setUser] = useState([{}]);
+const Register = ({addUser}) => {
+  const [users, setUsers] = useState([{}]);
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -19,7 +19,7 @@ const Register = () => {
     fetch("/users")
       .then((res) => res.json())
       .then((data) => {
-        setUser(data);
+        setUsers(data);
         console.log(data);
       });
   }, [refreshPage]);
@@ -49,7 +49,7 @@ const Register = () => {
         },
         body: JSON.stringify(values, null, 2),
       }).then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           setRefreshPage(!refreshPage);
         }
       });
@@ -101,6 +101,29 @@ const Register = () => {
           <p style={{ color: "red" }}> {formik.errors.password}</p>
           <button type="submit" className="button">CREATE ACCOUNT</button>
         </form>
+
+        <table style={{ padding: "15px" }}>
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>pasword</th>
+          </tr>
+          {users === "undefined" ? (
+            <p>Loading</p>
+          ) : (
+            users.map((user, i) => (
+              <>
+                <tr key={i}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.password}</td>
+                </tr>
+              </>
+            ))
+          )}
+        </tbody>
+      </table>
 
       </div>
 
