@@ -1,15 +1,20 @@
-import React from "react";
+
+import React from 'react';
+import Register from './Register';
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 
-function App() {
+const App = () => {
   return (
-    
-    <section>
-      <Dashboard />
-    </section>
 
-  );
-}
+    <div>      
+      <Register />
+    </div>
+    
+    <div>
+      <Dashboard />
+    </div>
+ 
+};
 
 export default App;
