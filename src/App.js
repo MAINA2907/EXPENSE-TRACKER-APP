@@ -1,5 +1,9 @@
+
 import './App.css';
 import React, { useState } from 'react';
+import Register from './Register';
+import Login from './components/Login'
+import Dashboard from "./components/Dashboard";
 import ExpenseList from './Expenses/ExpenseList';
 import ExpenseFilter from './Expenses/ExpenseFilter';
 import AddExpense from './Expenses/AddExpense';
@@ -16,7 +20,7 @@ function App() {
   ]);
 
   const [budgets, setBudgets] = useState([]);
-  const [view, setView] = useState('all'); // 'all', 'daily', 'monthly', 'yearly'
+  const [view, setView] = useState('all'); 
   const [showBudget, setShowBudget] = useState(false);
 
   const deleteItem = (id) => {
@@ -32,7 +36,7 @@ function App() {
   };
 
   const addExpense = (newExpense) => {
-    const newId = expenses.length + 1; // Assuming id should be auto-incremented
+    const newId = expenses.length + 1;
     const expenseWithId = { ...newExpense, id: newId };
     setExpenses([...expenses, expenseWithId]);
   };
@@ -54,7 +58,7 @@ function App() {
   };
 
   const addBudget = (newBudget) => {
-    const newId = budgets.length + 1; // Assuming id should be auto-incremented
+    const newId = budgets.length + 1; 
     const budgetWithId = { ...newBudget, id: newId };
     setBudgets([...budgets, budgetWithId]);
   };
@@ -65,6 +69,18 @@ function App() {
 
   return (
     <div className="App">
+        <div>
+        <Login />
+        </div>
+    
+        <div>      
+          <Register />
+        </div>
+    
+        <div>
+          <Dashboard />
+        </div>
+    
       <div className="navbar">
         <button onClick={() => setShowBudget(false)} className="nav-btn">EXPENSES</button>
         <button onClick={() => setShowBudget(true)} className="nav-btn">BUDGET</button>
@@ -86,8 +102,8 @@ function App() {
           )}
         </>
       )}
-    </div>
-  );
-}
+    
+ 
+};
 
 export default App;

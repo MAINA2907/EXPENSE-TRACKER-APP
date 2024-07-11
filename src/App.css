@@ -2,21 +2,21 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5; /* Light gray background */
-  color: #333; /* Dark gray text */
+  background-color: #f5f5f5; 
+  color: #333; 
 }
 
 .container {
-  width: 70%; /* Set width to 70% of the viewport */
+  width: 70%; 
   margin: 50px auto; /* Center the container horizontally */
-  background-color: #ffffff; /* White background */
+  background-color: #ffffff; 
   padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 h1 {
-  color: #1976d2; /* Bright blue text */
+  color: #1976d2; 
 }
 
 .form-select {
@@ -41,8 +41,8 @@ h1 {
 
 .add-expense-form {
   width: 100%;
-  max-width: 400px; /* Adjust as needed */
-  background-color: #ffffff; /* White background */
+  max-width: 400px; 
+  background-color: #ffffff; 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@ h1 {
 }
 
 .btn-primary {
-  background-color: #1976d2; /* Bright blue */
+  background-color: #1976d2; 
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -63,13 +63,13 @@ h1 {
 }
 
 .btn-primary:hover {
-  background-color: #1565c0; /* Darker shade of blue on hover */
+  background-color: #1565c0; 
 }
 
 .btn-outline-primary {
   background-color: transparent;
-  color: #1976d2; /* Bright blue */
-  border: 1px solid #1976d2; /* Bright blue border */
+  color: #1976d2; 
+  border: 1px solid #1976d2; 
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 5px;
@@ -77,36 +77,41 @@ h1 {
 }
 
 .btn-outline-primary:hover {
-  background-color: #1976d2; /* Bright blue */
+  background-color: #1976d2; 
   color: #ffffff;
 }
 
 .btn-outline-danger {
   background-color: transparent;
-  color: #d32f2f; /* Dark red */
-  border: 1px solid #d32f2f; /* Dark red border */
+  color: #d32f2f; 
+  border: 1px solid #d32f2f; 
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .btn-outline-danger:hover {
-  background-color: #d32f2f; /* Dark red */
+  background-color: #d32f2f; 
   color: #ffffff;
 }
 
 .btn-outline-success {
   background-color: transparent;
-  color: #388e3c; /* Dark green */
-  border: 1px solid #388e3c; /* Dark green border */
+  color: #388e3c; 
+  border: 1px solid #388e3c; 
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .btn-outline-success:hover {
-  background-color: #388e3c; /* Dark green */
+  background-color: #388e3c; 
   color: #ffffff;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
 .App {
@@ -220,3 +225,14 @@ h1 {
   font-weight: bold;
   color: #333;
 }
+
+.navbar-brand{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 3em;
+}
+
+.bg-war{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
