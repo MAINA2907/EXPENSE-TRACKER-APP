@@ -1,7 +1,8 @@
+/* src/App.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #cac1c1; /* Light gray background */
+  background-color: #f5f5f5; /* Light gray background */
   color: #333; /* Dark gray text */
 }
 
@@ -106,4 +107,116 @@ h1 {
 .btn-outline-success:hover {
   background-color: #388e3c; /* Dark green */
   color: #ffffff;
+}
+
+.App {
+  background-color: #f0f0f0;
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  color: white;
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: #0056b3;
+}
+
+.budget-container, .budget-form, .budget-list {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.expense-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.expense-btn {
+  padding: 15px 30px; /* Larger buttons */
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.expense-btn-daily {
+  background-color: #ff9800; /* Orange */
+  color: white;
+}
+
+.expense-btn-daily:hover {
+  background-color: #e68900;
+}
+
+.expense-btn-monthly {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.expense-btn-monthly:hover {
+  background-color: #388e3c;
+}
+
+.expense-btn-yearly {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.expense-btn-yearly:hover {
+  background-color: #d32f2f;
+}
+
+.total-expense {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
 }

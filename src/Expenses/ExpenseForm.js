@@ -1,6 +1,7 @@
   import React from 'react';
   import { Formik, Form, Field, ErrorMessage } from 'formik';
   import * as Yup from 'yup';
+import { click } from '@testing-library/user-event/dist/click';
 
   const ExpenseSchema = Yup.object().shape({
     date: Yup.date().required('Date is required'),

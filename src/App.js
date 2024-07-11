@@ -4,6 +4,7 @@ import ExpenseList from './Expenses/ExpenseList';
 import ExpenseFilter from './Expenses/ExpenseFilter';
 import AddExpense from './Expenses/AddExpense';
 import Breakdown from './Expenses/Breakdown';
+import Budget from './Budget/Budget';
 
 function App() {
   const [expenses, setExpenses] = useState([
@@ -14,11 +15,13 @@ function App() {
     { id: 5, date: "2024-07-02", expenseName: "Rent", expenseAmount: 20000, payMode: "credit card", category: "Utilities" },
   ]);
 
+  const [budgets, setBudgets] = useState([]);
   const [view, setView] = useState('all'); // 'all', 'daily', 'monthly', 'yearly'
+  const [showBudget, setShowBudget] = useState(false);
 
   const deleteItem = (id) => {
     setExpenses(expenses.filter(expense => expense.id !== id));
-  }
+  };
 
   const updateExpense = (updatedItems) => {
     setExpenses(updatedItems);
@@ -26,7 +29,7 @@ function App() {
 
   const filterItem = (categ) => {
     setExpenses(expenses.filter(expense => expense.category === categ));
-  }
+  };
 
   const addExpense = (newExpense) => {
     const newId = expenses.length + 1; // Assuming id should be auto-incremented
@@ -50,18 +53,38 @@ function App() {
     });
   };
 
+  const addBudget = (newBudget) => {
+    const newId = budgets.length + 1; // Assuming id should be auto-incremented
+    const budgetWithId = { ...newBudget, id: newId };
+    setBudgets([...budgets, budgetWithId]);
+  };
+
+  const deleteBudget = (id) => {
+    setBudgets(budgets.filter(budget => budget.id !== id));
+  };
+
   return (
     <div className="App">
-      <AddExpense onAddExpense={addExpense} />
-      <ExpenseFilter filterItem={filterItem} />
-      <ExpenseList items={expenses} deleteItem={deleteItem} updateExpense={updateExpense} />
-      <div>
-        <button onClick={() => setView('daily')}>Daily Expenses</button>
-        <button onClick={() => setView('monthly')}>Monthly Expenses</button>
-        <button onClick={() => setView('yearly')}>Yearly Expenses</button>
+      <div className="navbar">
+        <button onClick={() => setShowBudget(false)} className="nav-btn">EXPENSES</button>
+        <button onClick={() => setShowBudget(true)} className="nav-btn">BUDGET</button>
       </div>
-      {view !== 'all' && (
-        <Breakdown expenses={filterExpenses(view)} timeframe={view} />
+      {showBudget ? (
+        <Budget budgets={budgets} onAddBudget={addBudget} onDeleteBudget={deleteBudget} />
+      ) : (
+        <>
+          <AddExpense onAddExpense={addExpense} />
+          <ExpenseFilter filterItem={filterItem} />
+          <ExpenseList items={expenses} deleteItem={deleteItem} updateExpense={updateExpense} />
+          <div>
+            <button onClick={() => setView('daily')}>Daily Expenses</button>
+            <button onClick={() => setView('monthly')}>Monthly Expenses</button>
+            <button onClick={() => setView('yearly')}>Yearly Expenses</button>
+          </div>
+          {view !== 'all' && (
+            <Breakdown expenses={filterExpenses(view)} timeframe={view} />
+          )}
+        </>
       )}
     </div>
   );
