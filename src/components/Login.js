@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [users, setusers] = useState([{}])
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -30,9 +29,10 @@ const Login = () => {
         },
     });
     return (
-        <div className="login">
+        <div className='Maina'>
+        <div className="login-container">
             <div>
-                <form onSubmit={formik.handleSubmit}>
+                <form className= '' onSubmit={formik.handleSubmit}>
 
                     <div>
                         <label htmlFor="email">Email:</label>
@@ -60,12 +60,14 @@ const Login = () => {
                         />
                         <button type="button" onClick={togglePasswordVisibility} className="toggle-password">
                             {showPassword ? "Hide" : "Show"} </button> {formik.touched.password && formik.errors.password ? (<div>{formik.errors.password}</div>) : null} </div>
+                            
                     <button type="submit" onClick={formik.handleSubmit}>Login</button>
                 </form>
                 <div className="register-link">
                     <p>Don't have an account? <a href="/register">Register</a></p>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
