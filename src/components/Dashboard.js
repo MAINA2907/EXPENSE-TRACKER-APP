@@ -1,29 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import NavBar from "./navbar";
+import Register from "../Register";
+
 
 function Dashboard() {
-    
+const navigate = useNavigate()
+
+  const expenses = [
+    { name: "Groceries", amount: 1000, category: "Food" },
+    { name: "Electricity Bill", amount: 500, category: "Utilities" },
+    { name: "Gym Membership", amount: 3000, category: "Health" },
+    { name: "Internet Bill", amount: 4000, category: "Utilities" },
+    { name: "Dining Out", amount: 6000, category: "Food" },
+  ];
+
   return (
     <section>
-      <section>
-        <div className=" ">
-          <nav class="navbar navbar-expand-lg navbar-dark  m-4">
-            <div class="container-fluid ">
-              <a class="navbar-brand mb-0 h1 ">EXPENSE TRACKER</a>
-            </div>
-          </nav>
-        </div>
 
-        {/* Buttons */}
-        <form class="d-grid gap-2 d-md-flex justify-content-md-end ">
-          <button class="btn btn-warning me-2 " type="button" >
-            EXPENSES
-          </button>
-          <button class="btn btn-primary me-2" type="button">
-            BUDGET
-          </button>
-        </form>
-     </section>
-
+         <NavBar/>
+     
+     
 
       <br></br>
       <br></br>
@@ -32,90 +29,47 @@ function Dashboard() {
         <div className="row ">
           <div className="col-3  border shadow-sm">
             <div className="d-flex flex-column">
-              <button class="btn btn-warning m-3" type="button">
+              <button class="btn btn-warning m-3" type="button" onClick={() => navigate('/')}>
                 Dashboard
               </button>
-              <button class="btn btn-warning m-3 " type="button">
+              <button class="btn btn-warning m-3 " type="button" onClick={() => navigate('/expenses')}>
                 Expenses
               </button>
-              <button class="btn btn-warning m-3" type="button">
+              <button class="btn btn-warning m-3" type="button" onClick={() => navigate('/budget')}>
                 Budget
+              </button>
+              <button class="btn btn-warning m-3" type="button" onClick={() => navigate('/register')}>
+                Profile
               </button>
             </div>
           </div>
 
           <div className=" col-9">
             <h2 className="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
-              HI welcome to Group 8 Expense tracker
+              Welcome to Group 8 Expense tracker
             </h2>
+
             <div class="row">
-              <div class="col-md-4 mb-4">
-                <div class="card m-3">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">
-                      Card subtitle
-                    </h6>
-                    <p class="card-text">Some quick example text</p>
-                    <a href="#" class="card-link">
-                      View Budget
-                    </a>
-                    <a href="#" class="card-link">
-                      View Expense
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                <div class="card m-3">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">
-                      Card subtitle
-                    </h6>
-                    <p class="card-text">Some quick example text</p>
-                    <a href="#" class="card-link">
-                      View Budget
-                    </a>
-                    <a href="#" class="card-link">
-                      View Expense
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                <div class="card m-3">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">
-                      Card subtitle
-                    </h6>
-                    <p class="card-text">Some quick example text</p>
-                    <a href="#" class="card-link">
-                      View Budget
-                    </a>
-                    <a href="#" class="card-link">
-                      View Expense
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                <div class="card m-3">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">
-                      Card subtitle
-                    </h6>
-                    <p class="card-text">Some quick example text</p>
-                    <a href="#" class="card-link">
-                      View Budget
-                    </a>
-                    <a href="#" class="card-link">
-                      View Expense
-                    </a>
-                  </div>
-                </div>
+              <div className="col-md-12 mb-4">
+                <h3>Expense List</h3>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Category</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {expenses.map((expense, index) => (
+                      <tr key={index}>
+                        <td>{expense.name}</td>
+                        <td>Ksh {expense.amount}</td>
+                        <td>{expense.category}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

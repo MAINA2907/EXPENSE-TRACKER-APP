@@ -1,25 +1,30 @@
-
-import React from 'react';
-import Register from './Register';
-import Login from './components/Login'
-import Dashboard from "./components/Dashboard";
 import "./App.css";
+import Register from "./Register";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import ExpenseTracker from "./components/Expense";
+import Budget from "./components/Budget";
 
-const App = () => {
-  return (
 
-    <div>
-        <Login />
-      </div>
-    
-    <div>      
-      <Register />
-    </div>
-    
-    <div>
-      <Dashboard />
-    </div>
+function App() {
  
-};
+  return (
+    <div className="App">
+      <Login />
+
+      <Register />
+
+      <Dashboard />
+
+      <ExpenseTracker />
+
+      <Budget />
+
+
+
+      
+    </div>
+  );
+}
 
 export default App;
