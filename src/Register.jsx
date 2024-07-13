@@ -104,11 +104,11 @@ const Register = ({addUser}) => {
 
         <table style={{ padding: "15px" }}>
         <tbody>
-          <tr>
-            <th>name</th>
-            <th>email</th>
-            <th>pasword</th>
-          </tr>
+          {/* <tr>
+            <th>name</th>/
+            <th>email</th>/
+            <th>password</th>
+          </tr> */}
           {users === "undefined" ? (
             <p>Loading</p>
           ) : (
