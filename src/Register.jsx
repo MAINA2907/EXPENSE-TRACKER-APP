@@ -4,7 +4,7 @@ import * as yup from "yup";
 import './Register.css';
 
 
-const Register = ({addUser}) => {
+const Register = () => {
   const [users, setUsers] = useState([{}]);
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
