@@ -10,6 +10,7 @@ import Register from './Register';
 import ExpenseTracker from './components/Expense';
 import Budget from './components/Budget';
 
+
 const router = createBrowserRouter([
   {
     path: '/register',
@@ -20,15 +21,16 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path:'/',
-    element:<Dashboard />
+    path: '/',
+    element: <Dashboard />
+  },
+ 
+  {
+    path: '/Expenses',
+    element: <ExpenseTracker />
   },
   {
-    path:'/Expenses',
-    element:<ExpenseTracker/>
-  },
-  {
-    path:'/budget',
+    path: '/budget',
     element: <Budget />
   }
 ])
@@ -41,9 +43,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
 
-   
-    <RouterProvider router = {router} />
-   
+
+    <RouterProvider router={router} />
+
 
   </React.StrictMode>
 );

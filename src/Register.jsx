@@ -5,7 +5,7 @@ import './Register.css';
 
 
 const Register = () => {
-  const [users, setUsers] = useState([{}]);
+  const [users, setUsers] = useState([]);
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,16 +42,23 @@ const Register = () => {
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
-      fetch("/users", {
+      fetch('https://expense-tracker-api-3-ibzf.onrender.com/register', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values, null, 2),
-      }).then((res) => {
-        if (res.status === 200) {
-          setRefreshPage(!refreshPage);
+        body: JSON.stringify(values),
+      })
+      .then((res) => {
+        if (res.ok) {
+          navigate('/login')
+        } else {
+          throw new Error('Failed to register');
         }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle error scenarios, e.g., show error message to the user
       });
     },
   });
@@ -102,13 +109,13 @@ const Register = () => {
           <button type="submit" className="button">CREATE ACCOUNT</button>
         </form>
 
-        <table style={{ padding: "15px" }}>
+        {/* <table style={{ padding: "15px" }}>
         <tbody>
-          {/* <tr>
+          <tr>
             <th>name</th>/
             <th>email</th>/
             <th>password</th>
-          </tr> */}
+          </tr>
           {users === "undefined" ? (
             <p>Loading</p>
           ) : (
@@ -123,7 +130,7 @@ const Register = () => {
             ))
           )}
         </tbody>
-      </table>
+      </table> */}
 
       </div>
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import NavBar from './navbar';
+import { Link } from "react-router-dom";
 
 const ExpenseSchema = Yup.object().shape({
     date: Yup.date().required('Date is required'),
@@ -13,32 +14,14 @@ const ExpenseSchema = Yup.object().shape({
 
 
 const ExpenseTracker = () => {
-    const [expenses, setExpenses] = useState([
-        {
-            id: 1,
-            date: '2024-07-01',
-            description: 'Groceries',
-            amount: 50.25,
-            payMode: 'Credit Card',
-            category: 'Food',
-        },
-        {
-            id: 2,
-            date: '2024-07-05',
-            description: 'Movie Night',
-            amount: 25.00,
-            payMode: 'Cash',
-            category: 'Entertainment',
-        },
-        {
-            id: 3,
-            date: '2024-07-10',
-            description: 'Electricity Bill',
-            amount: 80.00,
-            payMode: 'Online Banking',
-            category: 'Utilities',
-        },
-    ]);
+const[expenses, setExpenses] = useState([])
+
+    useEffect(()=>{
+        fetch('https://expense-tracker-api-3-ibzf.onrender.com/expenses')
+        .then((r)=>r.json())
+        .then(setExpenses)
+    }, [])
+
     const [editingItem, setEditingItem] = useState(null);
 
     const addExpense = (expense) => {
@@ -99,6 +82,15 @@ const ExpenseTracker = () => {
     return (
         <div>
             <NavBar/>
+
+            {expenses.map((expense)=>(
+                <div key={expense.id} className='card'>
+                    {/* <h2>
+                        <Link to={`/expenses/${expense.id}`}/>
+                        {expense.description}
+                    </h2> */}
+                </div>
+            ))}
         <div className="expense-tracker">
 
            

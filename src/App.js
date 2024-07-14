@@ -6,6 +6,7 @@ import ExpenseTracker from "./components/Expense";
 import Budget from "./components/Budget";
 
 
+
 function App() {
  
   return (
@@ -15,6 +16,7 @@ function App() {
       <Register />
 
       <Dashboard />
+     
 
       <ExpenseTracker />
 

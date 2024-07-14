@@ -1,19 +1,20 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from './navbar';
+import { Link } from "react-router-dom";
 
 
 const Budget = () => {
   const [budgetName, setBudgetName] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');
   const [filter, setFilter] = useState('');
-  const [budgets, setBudgets] = useState([
-    { id: 1, name: 'Groceries', amount: 5000 },
-    { id: 2, name: 'Utilities', amount: 3000 },
-    { id: 3, name: 'Rent', amount: 20000 },
-    { id: 4, name: 'Entertainment', amount: 4000 },
-    { id: 5, name: 'Transportation', amount: 2500 }
-  ]);
+  const [budgets, setBudgets] = useState([]);
+
+  useEffect(()=>{
+      fetch('/budgets')
+      .then((r)=>r.json())
+      .then(setBudgets)
+  }, [])
 
   const onDeleteBudget = (id) => {
     setBudgets(budgets.filter((budget) => budget.id !== id));
@@ -37,6 +38,15 @@ const Budget = () => {
   return (
     <div className='body'>
       <NavBar />
+
+      {budgets.map((budget)=>(
+                <div key={budget.id} className='card'>
+                    <h2>
+                        <Link to={`/budgets/${budget.id}`}/>
+                        
+                    </h2>
+                </div>
+            ))}
 
       <div className = "table-container">
         <form onSubmit={handleAddBudget} className="budget-form">
