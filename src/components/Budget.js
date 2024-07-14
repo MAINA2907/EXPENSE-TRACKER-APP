@@ -1,45 +1,80 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from './navbar';
-
 
 const Budget = () => {
   const [budgetName, setBudgetName] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');
   const [filter, setFilter] = useState('');
-  const [budgets, setBudgets] = useState([
-    { id: 1, name: 'Groceries', amount: 5000 },
-    { id: 2, name: 'Utilities', amount: 3000 },
-    { id: 3, name: 'Rent', amount: 20000 },
-    { id: 4, name: 'Entertainment', amount: 4000 },
-    { id: 5, name: 'Transportation', amount: 2500 }
-  ]);
+  const [budgets, setBudgets] = useState([]);
 
-  const onDeleteBudget = (id) => {
-    setBudgets(budgets.filter((budget) => budget.id !== id));
+  useEffect(() => {
+    fetchBudgets();
+  }, []);
+
+  const fetchBudgets = () => {
+    fetch('https://expense-tracker-api-3-ibzf.onrender.com/budgets')
+      .then(response => response.json())
+      .then(data => setBudgets(data))
+      .catch(error => console.error('Error fetching budgets:', error));
   };
 
-  const handleAddBudget = (e) => {
-    e.preventDefault();
+  const addBudget = () => {
     if (!budgetName || !budgetAmount) {
       alert('Please fill in all fields');
       return;
     }
-    setBudgets([...budgets, { id: Date.now(), name: budgetName, amount: parseFloat(budgetAmount) }]);
-    setBudgetName('');
-    setBudgetAmount('');
+
+    const newBudget = {
+      name: budgetName,
+      amount: parseFloat(budgetAmount)
+    };
+
+    fetch('https://expense-tracker-api-3-ibzf.onrender.com/budgets', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newBudget)
+    })
+      .then(response => response.json())
+      .then(data => {
+        setBudgets([...budgets, data]);
+        setBudgetName('');
+        setBudgetAmount('');
+      })
+      .catch(error => {
+        console.error('Error adding budget:', error);
+        alert('Failed to add budget');
+      });
+  };
+
+  const deleteBudget = (id) => {
+    fetch(`https://expense-tracker-api-3-ibzf.onrender.com/budgets/${id}`, {
+      method: 'DELETE'
+    })
+      .then(response => {
+        if (response.ok) {
+          setBudgets(budgets.filter(budget => budget.id !== id));
+        } else {
+          alert('Failed to delete budget');
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting budget:', error);
+        alert('Failed to delete budget');
+      });
   };
 
   const filteredBudgets = budgets.filter(budget =>
-    budget.name.toLowerCase().includes(filter.toLowerCase())
+    budget.name && budget.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
     <div className='body'>
       <NavBar />
 
-      <div className = "table-container">
-        <form onSubmit={handleAddBudget} className="budget-form">
+      <div className="table-container">
+        <form onSubmit={(e) => { e.preventDefault(); addBudget(); }} className="budget-form">
           <div className="form-group">
             <label>Budget Name</label>
             <input
@@ -60,18 +95,7 @@ const Budget = () => {
           </div>
           <button type="submit" className="btn">Add Budget</button>
         </form>
-        <div className='Mwenda container'>
-        <div className="filter-container">
-          <label>Filter Budgets</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter budget name"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          />
-        </div>
-        </div>
+        
 
         <div className="budget-list">
           <h3>Budgets</h3>
@@ -89,8 +113,8 @@ const Budget = () => {
                   <td>{budget.name}</td>
                   <td>Ksh {budget.amount}</td>
                   <td>
-                    <button 
-                      onClick={() => onDeleteBudget(budget.id)} 
+                    <button
+                      onClick={() => deleteBudget(budget.id)}
                       className="btn btn-delete"
                     >
                       Delete
