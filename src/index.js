@@ -3,11 +3,49 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+import Register from './Register';
+import ExpenseTracker from './components/Expense';
+import Budget from './components/Budget';
+// import ExpenseForm from './components/ExpenseForm';
+
+const router = createBrowserRouter([
+  {
+    path: '/register',
+    element: <Register />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path:'/',
+    element:<Dashboard />
+  },
+  {
+    path:'/Expenses',
+    element:<ExpenseTracker/>
+  },
+  {
+    path:'/budgets',
+    element: <Budget />
+  }
+])
+
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+
+   
+    <RouterProvider router = {router} />
+   
+
   </React.StrictMode>
 );
 
