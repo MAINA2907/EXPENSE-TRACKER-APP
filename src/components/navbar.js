@@ -12,7 +12,7 @@ function NavBar () {
                 <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expenses')}>
                   EXPENSES
                 </button>
-                <button class="btn btn-outline-success" type="button" onClick={() => navigate('/budget')}>
+                <button class="btn btn-outline-success" type="button" onClick={() => navigate('/budgets')}>
                   BUDGET
                 </button>
              

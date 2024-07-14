@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Register from './Register';
 import ExpenseTracker from './components/Expense';
 import Budget from './components/Budget';
+// import ExpenseForm from './components/ExpenseForm';
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     element: <ExpenseTracker />
   },
   {
-    path: '/budget',
+    path:'/budgets',
     element: <Budget />
   }
 ])

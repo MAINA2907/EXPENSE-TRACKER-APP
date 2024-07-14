@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import ExpenseTracker from "./components/Expense";
 import Budget from "./components/Budget";
+// import ExpenseForm from "./components/ExpenseForm";
 
 
 
@@ -21,6 +22,8 @@ function App() {
       <ExpenseTracker />
 
       <Budget />
+
+      {/* <ExpenseForm/> */}
 
 
 
