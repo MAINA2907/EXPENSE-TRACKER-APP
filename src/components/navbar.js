@@ -7,12 +7,12 @@ function NavBar () {
 
     return (
         <nav class=" navbar ">
-            <div class=" barGraph container-fluid">
+            <div class=" barGraph container-fluid ">
               <a class="navbar-brand" onClick={() => navigate('/')}>EXPENSE TRACKER</a>
                 <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expenses')}>
                   EXPENSES
                 </button>
-                <button class="btn btn-outline-success" type="button" onClick={() => navigate('/budget')}>
+                <button class="btn btn-outline-success" type="button" onClick={() => navigate('/budgets')}>
                   BUDGET
                 </button>
              
@@ -22,4 +22,3 @@ function NavBar () {
 }
 
 export default NavBar
-

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import './Register.css';
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
+  const navigate=useNavigate()
   const [users, setUsers] = useState([]);
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -51,7 +54,7 @@ const Register = () => {
       })
       .then((res) => {
         if (res.ok) {
-          setRefreshPage(!refreshPage);
+          navigate("/login")
         } else {
           throw new Error('Failed to register');
         }
