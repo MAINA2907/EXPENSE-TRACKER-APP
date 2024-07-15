@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./navbar";
+import { useOutletContext } from "react-router-dom";
 
 function Dashboard() {
+
+  const [user, setUser] = useOutletContext()
+
   const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
 
@@ -14,7 +18,9 @@ function Dashboard() {
     fetch('https://expense-tracker-api-3-ibzf.onrender.com/expenses')
       .then(response => response.json())
       .then(data => {
-        const formattedData = data.map(expense => ({
+        const userdata = data.filter(item => user.id == item.user_id)
+        console.log(userdata)
+        const formattedData = userdata.map(expense => ({
           description: expense.description,
           amount: expense.amount,
           category: expense.category,
@@ -23,6 +29,7 @@ function Dashboard() {
       })
       .catch(error => console.error('Error fetching expenses:', error));
   };
+  console.log(expenses)
 
   return (
     <section>
@@ -49,7 +56,7 @@ function Dashboard() {
           </div>
           <div className="col-9">
             <h2 className="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
-              Welcome to Group 8 Expense Tracker
+              Welcome to {user.name} Expense Tracker
             </h2>
             <div className="row">
               <div className="col-md-12 mb-4">

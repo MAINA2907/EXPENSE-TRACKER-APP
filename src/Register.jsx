@@ -4,12 +4,14 @@ import * as yup from "yup";
 import './Register.css';
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+
 
 
 const Register = () => {
   const navigate=useNavigate()
+  const [user, setUser] = useOutletContext()
   
-  const [users, setUsers] = useState([]);
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,15 +20,7 @@ const Register = () => {
   };
 
 
-  useEffect(() => {
-    console.log("FETCH! ");
-    fetch("/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-        console.log(data);
-      });
-  }, [refreshPage]);
+  
 
   const formSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Must enter email"),
@@ -45,26 +39,34 @@ const Register = () => {
       password: "",
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
-      fetch('https://expense-tracker-api-3-ibzf.onrender.com/register', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    onSubmit: async (values) => {
+            try {
+                 fetch('https://expense-tracker-api-3-ibzf.onrender.com/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                }).then ((response) => {if (response.ok) {
+                  response.json()
+                  .then(data => {
+                  localStorage.setItem('access_token', data.access_token)
+                  setUser(data.user)
+                  }).then( navigate('/expense-tracker-app/login'))
+                    
+
+                  
+                } else {
+                    console.error('Login failed:', response.statusText);
+                    alert('Login failed. Please check your credentials.');
+                }}
+            )
+                
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An error occurred during login. Please try again later.');
+            }
         },
-        body: JSON.stringify(values),
-      })
-      .then((res) => {
-        if (res.ok) {
-          navigate("/expense-tracker-app/login")
-        } else {
-          throw new Error('Failed to register');
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle error scenarios, e.g., show error message to the user
-      });
-    },
   });
 
   return (

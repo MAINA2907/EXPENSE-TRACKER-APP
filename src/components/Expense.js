@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import NavBar from "./navbar";
+import { useOutletContext } from "react-router-dom";
 
 const ExpenseSchema = Yup.object().shape({
     date: Yup.date().required("Date is required"),
@@ -13,7 +14,12 @@ const ExpenseSchema = Yup.object().shape({
     category: Yup.string().required("Category is required"),
 });
 
+
 const ExpenseTracker = () => {
+
+    const [user, setUser] = useOutletContext()
+
+
     const [expenses, setExpenses] = useState([]);
     const [editingItem, setEditingItem] = useState(null);
     const [editedDate, setEditedDate] = useState("");
@@ -22,12 +28,27 @@ const ExpenseTracker = () => {
     const [editedPayMode, setEditedPayMode] = useState("");
     const [editedCategory, setEditedCategory] = useState("");
 
-    useEffect(() => {
-        fetch("https://expense-tracker-api-3-ibzf.onrender.com/expenses")
-            .then((response) => response.json())
-            .then((data) => setExpenses(data))
-            .catch((error) => console.error("Error fetching expenses:", error));
-    }, []);
+    
+    useEffect (() => {
+
+        fetch('https://expense-tracker-api-3-ibzf.onrender.com/expenses')
+      .then(response => response.json())
+      .then(data => {
+        const userdata = data.filter(item => user.id == item.user_id)
+        console.log(user)
+        const formattedData = userdata.map(expense => ({
+          description: expense.description,
+          amount: expense.amount,
+          category: expense.category,
+          paymode:expense.paymode,
+          date: expense.date
+        }));
+        setExpenses(formattedData);
+      })
+      .catch(error => console.error('Error fetching expenses:', error));
+    }, [])
+    
+    
 
     const addExpense = (expense) => {
         fetch("https://expense-tracker-api-3-ibzf.onrender.com/expenses", {
@@ -35,7 +56,7 @@ const ExpenseTracker = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(expense),
+            body: JSON.stringify({...expense, "user_id": user.id}),
         })
             .then((response) => response.json())
             .then((newExpense) => {
