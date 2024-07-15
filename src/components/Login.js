@@ -36,7 +36,7 @@ const Login = () => {
                 });
                 if (response.ok) {
                     // Redirect or perform action upon successful login
-                    navigate('/')
+                    navigate('/expense-tracker-app')
                     
                   
                 } else {
@@ -87,7 +87,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </form>
             <div className="register-link">
-                <p>Don't have an account? <a href="/register">Register</a></p>
+                <p>Don't have an account? <a onClick={() => navigate("/expense-tracker-app/register")}>Register</a></p>
             </div>
         </div>
     );

@@ -55,7 +55,7 @@ const Register = () => {
       })
       .then((res) => {
         if (res.ok) {
-          navigate("/login")
+          navigate("/expense-tracker-app/login")
         } else {
           throw new Error('Failed to register');
         }
@@ -71,7 +71,7 @@ const Register = () => {
     <div className="form-container">
       <div className="form-wrapper">
         <h2>Hello, Create account</h2>
-        <div><p>Already have an account? <a href='/login'>Login</a></p> </div>
+        <div><p>Already have an account? <a onClick={() => navigate('/expense-tracker-app/login')} >Login</a></p> </div>
         <form onSubmit={formik.handleSubmit} style={{ margin: "30px" }}>
           <label htmlFor="email">Email Address</label>
           <br />

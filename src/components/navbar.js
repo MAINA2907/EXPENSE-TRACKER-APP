@@ -8,11 +8,11 @@ function NavBar () {
     return (
         <nav class=" navbar ">
             <div class=" barGraph container-fluid ">
-              <a class="navbar-brand" onClick={() => navigate('/')}>EXPENSE TRACKER</a>
-                <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expenses')}>
+              <a class="navbar-brand" onClick={() => navigate('/expense-tracker-app')}>EXPENSE TRACKER</a>
+                <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expense-tracker-app/expenses')}>
                   EXPENSES
                 </button>
-                <button class="btn btn-outline-success" type="button" onClick={() => navigate('/budgets')}>
+                <button class="btn btn-outline-success" type="button" onClick={() => navigate('/expense-tracker-app/budgets')}>
                   BUDGET
                 </button>
              

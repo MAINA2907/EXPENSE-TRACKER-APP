@@ -13,23 +13,23 @@ import Budget from './components/Budget';
 
 const router = createBrowserRouter([
   {
-    path: '/register',
+    path: '/expense-tracker-app/register',
     element: <Register />
   },
   {
-    path: '/login',
+    path: '/expense-tracker-app/login',
     element: <Login />
   },
   {
-    path:'/',
+    path:'/expense-tracker-app',
     element:<Dashboard />
   },
   {
-    path:'/Expenses',
+    path:'/expense-tracker-app/Expenses',
     element:<ExpenseTracker/>
   },
   {
-    path:'/budgets',
+    path:'/expense-tracker-app/budgets',
     element: <Budget />
   }
 ])

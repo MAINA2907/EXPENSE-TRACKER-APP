@@ -33,16 +33,16 @@ function Dashboard() {
         <div className="row">
           <div className="col-3 border shadow-sm">
             <div className="d-flex flex-column">
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app')}>
                 Dashboard
               </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expenses')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/expenses')}>
                 Expenses
               </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/budgets')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/budgets')}>
                 Budget
               </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/register')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/register')}>
                 Profile
               </button>
             </div>
