@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate=useNavigate()
+  
   const [users, setUsers] = useState([]);
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

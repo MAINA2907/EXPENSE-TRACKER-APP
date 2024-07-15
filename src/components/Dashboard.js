@@ -39,7 +39,7 @@ function Dashboard() {
               <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expenses')}>
                 Expenses
               </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/budget')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/budgets')}>
                 Budget
               </button>
               <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/register')}>
