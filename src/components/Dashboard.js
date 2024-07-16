@@ -41,9 +41,9 @@ function Dashboard() {
         <div className="row">
           <div className="col-3 border shadow-sm">
             <div className="d-flex flex-column">
-              {/* <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/dashboard')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/dashboard')}>
                 Dashboard
-              </button> */}
+              </button>
               <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/expenses')}>
                 Expenses
               </button>
