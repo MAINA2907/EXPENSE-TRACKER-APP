@@ -21,11 +21,11 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path: '/expense-tracker-app/login',
+        path: '/expense-tracker-app/',
         element: <Login />
       },
       {
-       path:'/expense-tracker-app',
+       path:'/expense-tracker-app/dashboard',
         element:<Dashboard /> 
       },
       {

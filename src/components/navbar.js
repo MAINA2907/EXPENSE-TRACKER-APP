@@ -12,14 +12,15 @@ function NavBar () {
     const handleLogOut = () => {
       localStorage.removeItem("access_token")
       setUser(null)
-      navigate("/expense-tracker-app/login")
+      navigate("/expense-tracker-app")
     }
 
     return (
-        <nav class=" navbar ">
-            <div class=" barGraph container-fluid ">
-              <a class="navbar-brand" onClick={() => navigate('/expense-tracker-app')}>EXPENSE TRACKER</a>
-                <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expense-tracker-app')}>
+        <nav class=" navbar bg-body-tertiary">
+            <div class=" container-fluid ">
+              <a class="navbar-brand" >EXPENSE TRACKER</a>
+              <form className='d-flex'>
+                <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expense-tracker-app/dashboard')}>
                   DASHBOARD
                 </button>
                 <button class="btn btn-outline-success" type="button" onClick={() => navigate('/expense-tracker-app/budgets')}>
@@ -31,6 +32,7 @@ function NavBar () {
                 <button class="btn btn-outline-success " type="button " onClick= {handleLogOut}>
                   LOGOUT
                 </button>
+                </form>
             </div>
           </nav>
     )

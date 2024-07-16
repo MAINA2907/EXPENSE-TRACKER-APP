@@ -12,7 +12,7 @@ function Dashboard() {
 
   useEffect(() => {
     fetchExpenses();
-  }, []);
+  }, [user]);
 
   const fetchExpenses = () => {
     fetch('https://expense-tracker-api-3-ibzf.onrender.com/expenses')
@@ -25,7 +25,8 @@ function Dashboard() {
           amount: expense.amount,
           category: expense.category,
         }));
-        setExpenses(formattedData);
+        if (user.id) {setExpenses(formattedData);}
+        
       })
       .catch(error => console.error('Error fetching expenses:', error));
   };
@@ -40,7 +41,7 @@ function Dashboard() {
         <div className="row">
           <div className="col-3 border shadow-sm">
             <div className="d-flex flex-column">
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/dashboard')}>
                 Dashboard
               </button>
               <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/expenses')}>
@@ -49,15 +50,15 @@ function Dashboard() {
               <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/budgets')}>
                 Budget
               </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/register')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/')}>
                 Profile
               </button>
             </div>
           </div>
           <div className="col-9">
-            <h2 className="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
-              Welcome to {user.name} Expense Tracker
-            </h2>
+           {user && <h2 className="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+              Welcome {user.name} to Tropical Expense Tracker
+            </h2>}
             <div className="row">
               <div className="col-md-12 mb-4">
                 <h3>Expense List</h3>
@@ -69,7 +70,8 @@ function Dashboard() {
                       <th scope="col">Category</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  {expenses && <tbody>
+
                     {expenses.map((expense, index) => (
                       <tr key={index}>
                         <td>{expense.description}</td>
@@ -77,7 +79,7 @@ function Dashboard() {
                         <td>{expense.category}</td>
                       </tr>
                     ))}
-                  </tbody>
+                  </tbody>}
                 </table>
               </div>
             </div>

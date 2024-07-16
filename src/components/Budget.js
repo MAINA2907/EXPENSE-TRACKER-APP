@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './navbar';
+import { useOutletContext } from 'react-router-dom';
 
 const Budget = () => {
+
+  const [user, setUser] = useOutletContext()
+ 
   const [budgetName, setBudgetName] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');
   const [filter, setFilter] = useState('');
@@ -9,14 +13,19 @@ const Budget = () => {
 
   useEffect(() => {
     fetchBudgets();
-  }, []);
+  }, [user]);
 
   const fetchBudgets = () => {
-    fetch('https://expense-tracker-api-3-ibzf.onrender.com/budgets')
-      .then(response => response.json())
-      .then(data => setBudgets(data))
-      .catch(error => console.error('Error fetching budgets:', error));
-  };
+      fetch("https://expense-tracker-api-3-ibzf.onrender.com/budgets")
+        .then((response) => response.json())
+        .then((data) => {
+          const userdata = data.filter((item) => user.id == item.user_id);
+          if (user.id) { setBudgets(userdata);}
+        })
+        .catch((error) => console.error("Error fetching budget:", error));
+    
+  }
+   
 
   const addBudget = () => {
     if (!budgetName || !budgetAmount) {
@@ -34,10 +43,12 @@ const Budget = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newBudget)
+      body: JSON.stringify({...newBudget, "user_id": user.id})
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data)
+
         setBudgets([...budgets, data]);
         setBudgetName('');
         setBudgetAmount('');

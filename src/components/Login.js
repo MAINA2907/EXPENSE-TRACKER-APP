@@ -41,7 +41,7 @@ const Login = () => {
                   .then(data => {
                   localStorage.setItem('access_token', data.access_token)
                   setUser(data.user)
-                  }).then( navigate('/expense-tracker-app'))
+                  }).then( navigate('/expense-tracker-app/dashboard'))
                     
 
 

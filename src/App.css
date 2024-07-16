@@ -115,13 +115,13 @@ h1 {
   pointer-events: none;
 }
 
-.App {
+/* .App {
   background-color: #f0f0f0;
   padding: 20px;
-  width: 70%;
-  margin: 0 auto;
+  height: 100vh;
+  width: 100%;
   border-radius: 10px;
-}
+} */
 
 
 
@@ -130,7 +130,6 @@ h1 {
   display: flex;
   border-radius: 10px;
   margin-bottom: 20px;
-  /* position: fixed; */
   background-color: #3a5c5e;
   width: 100%;
   z-index: 1000;
@@ -181,11 +180,6 @@ h1 {
 }
 
 .budget-form{
- /* background-color: #fff;
-  padding: 100px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(190, 15, 15, 0.1);
-  margin-bottom: 20px; */
   background-color: rgb(85, 144, 137);
   padding: 20px;
   border-radius: 8px;
@@ -230,7 +224,7 @@ h1 {
 }
 
 .expense-btn {
-  padding: 15px 30px; /* Larger buttons */
+  padding: 15px 30px; 
   font-size: 1.1em;
   border: none;
   border-radius: 5px;
@@ -239,7 +233,7 @@ h1 {
 }
 
 .expense-btn-daily {
-  background-color: #ff9800; /* Orange */
+  background-color: #ff9800; 
   color: white;
 }
 
@@ -248,7 +242,7 @@ h1 {
 }
 
 .expense-btn-monthly {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50; 
   color: white;
 }
 
@@ -257,7 +251,7 @@ h1 {
 }
 
 .expense-btn-yearly {
-  background-color: #f44336; /* Red */
+  background-color: #f44336; 
   color: white;
 }
 
@@ -292,20 +286,12 @@ h1 {
   padding: 120px;
 }
 
-/* .expense-form{
-  display: flex;
-  padding: 1000px;
-  border: 1px solid #ccc;
-  height: 100%;
-} */
 
 .expense-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 40vh; 
-  /* box-sizing: border-box; */
-  /* background-color: hsl(187, 23%, 57%);  */
   overflow-x: visible;
   margin-top: 70px;
 }
@@ -320,15 +306,7 @@ h1 {
   box-sizing: border-box;
 }
 
-/* .login-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #e6f7f7; 
-  height: 40vh;
-  padding: 200px;
-  margin-top: 80px;
-} */
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -438,3 +416,85 @@ h4 {
   font-weight: 600;
 } 
 
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .container {
+    width: 80%;
+  }
+
+  .expense-tracker {
+    width: 80%;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: 90%;
+  }
+
+  .expense-tracker {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .expense-tracker {
+    width: 95%;
+  }
+
+  .expense-form-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .expense-tracker {
+    width: 100%;
+  }
+
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    margin-bottom: 10px;
+  }
+
+  .nav-btn {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .expense-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .expense-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .login-container {
+    width: 100%;
+    margin-top: 40px;
+    padding: 10px;
+  }
+
+  .login-container form {
+    width: 100%;
+    padding: 10px;
+  }
+}
