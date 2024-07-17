@@ -38,23 +38,25 @@ function Dashboard() {
       <br />
       <br />
       <section className="container">
-        <div className="row">
-          <div className="col-3 border shadow-sm">
-            <div className="d-flex flex-column">
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/dashboard')}>
-                Dashboard
-              </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/expenses')}>
-                Expenses
-              </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/budgets')}>
-                Budget
-              </button>
-              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/')}>
-                Profile
-              </button>
+
+          <div className="row">
+            <div className="col-3 border shadow-sm">
+              <div className="d-flex flex-column">
+                <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/dashboard')}>
+                  Dashboard
+                </button>
+                <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/expenses')}>
+                  Expenses
+                </button>
+                <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/budgets')}>
+                  Budget
+                </button>
+                <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/')}>
+                  Profile
+                </button>
+              </div>
             </div>
-          </div>
+
           <div className="col-9">
            {user && <h2 className="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
               Welcome {user.name} to Tropical Expense Tracker
@@ -84,6 +86,8 @@ function Dashboard() {
               </div>
             </div>
           </div>
+
+          
         </div>
       </section>
     </section>
