@@ -20,10 +20,9 @@ function NavBar () {
             <div class=" container-fluid ">
               <a class="navbar-brand" >EXPENSE TRACKER</a>
               <form className='d-flex'>
-                <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expense-tracker-app/dashboard')}>
+              <button className="btn btn-warning m-3" type="button" onClick={() => navigate('/expense-tracker-app/dashboard')}>
                   DASHBOARD
                 </button>
-               
                 <button class="btn btn-outline-success " type="button " onClick={() => navigate('/expense-tracker-app/expenses')}>
                   EXPENSES
                 </button>
