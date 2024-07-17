@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import './Register.css';
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 
-const Register = ({addUser}) => {
-  const [users, setUsers] = useState([{}]);
+
+const Register = () => {
+  const navigate=useNavigate()
+  const [user, setUser] = useOutletContext()
+  
   const [refreshPage, setRefreshPage] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -14,15 +20,7 @@ const Register = ({addUser}) => {
   };
 
 
-  useEffect(() => {
-    console.log("FETCH! ");
-    fetch("/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-        console.log(data);
-      });
-  }, [refreshPage]);
+  
 
   const formSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Must enter email"),
@@ -41,26 +39,41 @@ const Register = ({addUser}) => {
       password: "",
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
-      fetch("/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    onSubmit: async (values) => {
+            try {
+                 fetch('https://expense-tracker-api-3-ibzf.onrender.com/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                }).then ((response) => {if (response.ok) {
+                  response.json()
+                  .then(data => {
+                  localStorage.setItem('access_token', data.access_token)
+                  setUser(data.user)
+                  }).then( navigate('/expense-tracker-app'))
+                    
+
+                  
+                } else {
+                    console.error('Login failed:', response.statusText);
+                    alert('Login failed. Please check your credentials.');
+                }}
+            )
+                
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An error occurred during login. Please try again later.');
+            }
         },
-        body: JSON.stringify(values, null, 2),
-      }).then((res) => {
-        if (res.status === 200) {
-          setRefreshPage(!refreshPage);
-        }
-      });
-    },
   });
 
   return (
     <div className="form-container">
       <div className="form-wrapper">
         <h2>Hello, Create account</h2>
-        <div><p>Already have an account? <a href='/login'>Login</a></p> </div>
+        <div><p>Already have an account? <a onClick={() => navigate('/expense-tracker-app')} >Login</a></p> </div>
         <form onSubmit={formik.handleSubmit} style={{ margin: "30px" }}>
           <label htmlFor="email">Email Address</label>
           <br />
@@ -102,13 +115,13 @@ const Register = ({addUser}) => {
           <button type="submit" className="button">CREATE ACCOUNT</button>
         </form>
 
-        <table style={{ padding: "15px" }}>
+        {/* <table style={{ padding: "15px" }}>
         <tbody>
-          {/* <tr>
+          <tr>
             <th>name</th>/
             <th>email</th>/
             <th>password</th>
-          </tr> */}
+          </tr>
           {users === "undefined" ? (
             <p>Loading</p>
           ) : (
@@ -123,7 +136,7 @@ const Register = ({addUser}) => {
             ))
           )}
         </tbody>
-      </table>
+      </table> */}
 
       </div>
 

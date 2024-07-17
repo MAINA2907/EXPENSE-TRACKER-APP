@@ -10,27 +10,35 @@ import Register from './Register';
 import ExpenseTracker from './components/Expense';
 import Budget from './components/Budget';
 
+
 const router = createBrowserRouter([
   {
-    path: '/register',
-    element: <Register />
-  },
-  {
-    path: '/login',
-    element: <Login />
-  },
-  {
-    path:'/',
-    element:<Dashboard />
-  },
-  {
-    path:'/Expenses',
-    element:<ExpenseTracker/>
-  },
-  {
-    path:'/budget',
-    element: <Budget />
-  }
+    path:'/expense-tracker-app',
+     element:<App />, 
+     children:[
+      {
+        path: '/expense-tracker-app/register',
+        element: <Register />
+      },
+      {
+        path: '/expense-tracker-app/',
+        element: <Login />
+      },
+      {
+       path:'/expense-tracker-app/dashboard',
+        element:<Dashboard /> 
+      },
+      {
+        path:'/expense-tracker-app/Expenses',
+        element:<ExpenseTracker/>
+      },
+      {
+        path:'/expense-tracker-app/budgets',
+        element: <Budget />
+      }
+     ] 
+   }
+  
 ])
 
 
